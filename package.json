@@ -6,7 +6,12 @@
   "scripts": {
     "build":" tsc",
     "dev": "nodemon src/index.ts",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "typeorm":"typeorm-ts-node-commonjs -d src/database/data-source.ts",
+    "migration:show":"   typeorm migration:show",
+    "migration:create":"node scripts/migration-create.js",
+    "migration:run":"npm typeorm migration:run",
+    "migration:revert":"npm typeorm mgiration:revert"
   },
   "repository": {
     "type": "git",
