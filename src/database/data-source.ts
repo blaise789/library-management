@@ -1,5 +1,6 @@
 import * as dotenv from "dotenv"
 import { DataSource } from "typeorm";
+import { Author } from "./entities/Author";
 dotenv.config()
 export const AppDataSource=new DataSource({
     type:"mysql",
@@ -10,7 +11,7 @@ export const AppDataSource=new DataSource({
     database:process.env.DB_DATABASE,
     logging:true,
     synchronize:true,
-    entities:[],
+    entities:[Author],
     subscribers:[],
     migrations:["src/database/migrations/*.ts"]
    
@@ -18,11 +19,3 @@ export const AppDataSource=new DataSource({
 }
     
 )
-
-AppDataSource.initialize()
-    .then(() => {
-        console.log("Data Source has been initialized!")
-    })
-    .catch((err) => {
-        console.error("Error during Data Source initialization", err)
-    })

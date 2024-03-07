@@ -23,6 +23,20 @@ fileTypes:string[]=["image/png", "image/jpeg"]
             }
 
         })
+        const fileFilter = (req, file, cb) => {
+            if (fileTypes.includes(file.mimetype)) {
+              cb(null, true);
+            } else {
+              cb(new Error("Invalid file type"), false);
+            }
+          };
+          let upload = multer({
+            storage: storage,
+            limits: { fileSize: fileSize },
+            fileFilter,
+          }).single(fileFieldName);
+          return upload;
+        }
 
     }
-}
+

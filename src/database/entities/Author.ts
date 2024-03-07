@@ -1,6 +1,6 @@
 import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { DBTable } from "../../constants/DBtable";
-import {}
+
 @Entity(DBTable.AUTHORS)
 export class Author {
   @PrimaryGeneratedColumn()

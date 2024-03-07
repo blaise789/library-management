@@ -4,4 +4,5 @@ import { ErrorHandler } from "../http/middlewares/ErrorHandler"
 
 const authorsController=new AuthorsController()
 const router=express.Router()
-router.get("/",ErrorHandler.handleErrors(authorsController.getAuthors))
+router.get("/",ErrorHandler.catch(authorsController.getAuthors))
+export default router;
