@@ -4,6 +4,7 @@ import bodyParser from "body-parser";
 import { EntityNotFoundError } from "typeorm";
 import { ResponseUtil } from "./utils/Response";
 import authRoute from "./routes/authors"
+import { ErrorHandler } from "./http/middlewares/ErrorHandler";
 
 const app: Express = express();
 app.use(cors())
@@ -26,5 +27,6 @@ app.use("*",(request:Request,response:Response)=>{
 //     }
 // })    
 })
+app.use(ErrorHandler.handleErrors)
 
 export default app;

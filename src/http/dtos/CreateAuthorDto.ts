@@ -5,7 +5,7 @@ export class CreateAuthorDto{
     @IsNotEmpty()
     @IsString()
     @MinLength(3)
-    @MaxLength(30)
+    @MaxLength(300)
     name:string
     @IsNotEmpty()
     @IsEmail()

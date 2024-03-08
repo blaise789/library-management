@@ -1,8 +1,12 @@
 import express from "express"
 import { AuthorsController } from "../http/controllers/AuthorsController"
 import { ErrorHandler } from "../http/middlewares/ErrorHandler"
+import { FileUploader } from "../http/middlewares/FileUploader"
 
 const authorsController=new AuthorsController()
 const router=express.Router()
 router.get("/",ErrorHandler.catch(authorsController.getAuthors))
-export default router;
+router.get("/:id",ErrorHandler.catch(authorsController.getById),ErrorHandler.handleErrors)
+
+router.post("/",FileUploader.upload("image", "authors", 2 * 1024 * 1024),ErrorHandler.catch(authorsController.createAuthor),ErrorHandler.handleErrors)
+export default router
