@@ -1,31 +1,24 @@
 import express,{Express ,NextFunction,Request,Response} from "express"
 import cors from "cors"
 import bodyParser from "body-parser";
-import { EntityNotFoundError } from "typeorm";
-import { ResponseUtil } from "./utils/Response";
-import authRoute from "./routes/authors"
+
+import authRoute from "./routes/auth"
+import authorRoute from "./routes/authors"
 import { ErrorHandler } from "./http/middlewares/ErrorHandler";
 
 const app: Express = express();
 app.use(cors())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended:true}))
-app.use("/authors",authRoute)
+app.use("/authors",authorRoute)
+app.use("/auth",authRoute)
 app.use("*",(request:Request,response:Response)=>{
-    return response.status(200).json({
+    return response.status(404).json({
     success:"false",
     message:"invalid route"
 
     })
-
-   
-
-// app.use((err:any,req:Request,res:Response,next:NextFunction)=>{
-//     if(err instanceof EntityNotFoundError){
-//         // return ResponseUtil.sendError)
     
-//     }
-// })    
 })
 app.use(ErrorHandler.handleErrors)
 
