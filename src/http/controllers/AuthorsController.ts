@@ -23,7 +23,8 @@ export class AuthorsController {
 
     }
     async getAuthors(req: Request, res: Response): Promise<Response> {
-        const authors = await AppDataSource.getRepository(Author).find()
+        // const authors = await AppDataSource.getRepository(Author).find()
+        const builder=await AppDataSource.createQueryBuilder().orderBy("id")
         return res.status(200).json({
             success: true,
             data: authors

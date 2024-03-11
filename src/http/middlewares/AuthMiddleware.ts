@@ -4,9 +4,10 @@ import { User } from "../../database/entities/User";
 import { ResponseUtil } from "../../utils/Response";
 import { NextFunction,Response,Request } from "express";
 import jwt, { JwtPayload } from "jsonwebtoken"
+import { RequestWithUser } from "./ReqWithUser";
 
 export class AuthMiddleware{
-     static async authenticate(req:Request,res:Response,next:NextFunction){
+     static async authenticate(req:RequestWithUser,res:Response,next:NextFunction){
         const {authorization:tokenHeader}=req.headers
     
         if(!tokenHeader){

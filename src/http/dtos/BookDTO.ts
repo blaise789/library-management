@@ -1,6 +1,6 @@
 import { IsNotEmpty, IsNumber, IsOptional, IsString, MaxLength, MinLength } from "class-validator"
 import { IsUnique } from "../validators/IsUnique"
-import { Book } from "@/database/entities/Book"
+import { Book } from "../../database/entities/Book"
 
 export class CreateBOOKDTO{
     id?:number
